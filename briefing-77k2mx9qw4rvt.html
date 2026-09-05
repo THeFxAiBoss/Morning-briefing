@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Briefing — September 5, 2026</title>
+<style>
+  :root {
+    --bg: #f4f1ea;
+    --card-bg: #ffffff;
+    --ink: #2a2620;
+    --muted: #6b655a;
+    --accent: #b3542a;
+    --accent-2: #2f6b4f;
+    --border: #e5ddcc;
+    --gold: #b8860b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 24px 16px 60px;
+  }
+  header.top {
+    text-align: center;
+    padding: 8px 0 20px;
+    border-bottom: 3px solid var(--accent);
+    margin-bottom: 24px;
+  }
+  header.top h1 {
+    font-size: 1.6rem;
+    margin: 0 0 4px;
+    letter-spacing: 0.5px;
+  }
+  header.top p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 18px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .card h2 {
+    font-size: 1.05rem;
+    margin: 0 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--accent);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 8px;
+  }
+  .card h2 .n { font-size: 1.2rem; }
+  ul { margin: 0; padding-left: 1.2em; }
+  li { margin-bottom: 8px; }
+  li:last-child { margin-bottom: 0; }
+  a { color: var(--accent-2); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .src { color: var(--muted); font-size: 0.85rem; }
+  .todo-list { list-style: none; padding-left: 0; }
+  .todo-list li {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    padding: 6px 0;
+    border-bottom: 1px dashed var(--border);
+  }
+  .todo-list li:last-child { border-bottom: none; }
+  .todo-tag {
+    flex-shrink: 0;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 10px;
+    color: #fff;
+  }
+  .tag-perso { background: var(--accent-2); }
+  .tag-sc { background: var(--accent); }
+  .todo-date { color: var(--muted); font-size: 0.78rem; margin-left: auto; white-space: nowrap; }
+  .weather-hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .weather-temp { font-size: 2.2rem; font-weight: 700; color: var(--accent); }
+  .weather-detail { color: var(--muted); font-size: 0.9rem; }
+  .stat-row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 10px;
+  }
+  .stat-box {
+    flex: 1;
+    min-width: 130px;
+    background: #faf7f0;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+  }
+  .stat-box .label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  .stat-box .value { font-size: 1.3rem; font-weight: 700; margin: 2px 0; }
+  .stat-box .note { font-size: 0.82rem; color: var(--muted); }
+  .fixture {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--border);
+  }
+  .fixture:last-child { border-bottom: none; }
+  .fixture .teams { font-weight: 600; }
+  .fixture .when { color: var(--muted); font-size: 0.85rem; text-align: right; }
+  .badge-barca { background: #a50044; color: #fff; font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; margin-left: 6px; }
+  .flag-note {
+    background: #fff6e5;
+    border: 1px solid #ecd9ad;
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-top: 10px;
+    font-size: 0.88rem;
+  }
+  .flag-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .flag-chip {
+    background: #eef4ee;
+    border: 1px solid #cfe3cf;
+    color: var(--accent-2);
+    font-size: 0.78rem;
+    padding: 3px 9px;
+    border-radius: 12px;
+  }
+  .flag-chip.hit { background: var(--gold); border-color: var(--gold); color: #fff; font-weight: 600; }
+  .quote-block {
+    text-align: center;
+    font-style: italic;
+    font-size: 1.15rem;
+    padding: 8px 4px;
+    color: var(--ink);
+  }
+  .quote-attr {
+    text-align: center;
+    margin-top: 8px;
+    color: var(--muted);
+    font-style: normal;
+    font-size: 0.9rem;
+  }
+  .unavailable {
+    color: var(--muted);
+    font-style: italic;
+    font-size: 0.9rem;
+  }
+  footer.gen {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.82rem;
+    margin-top: 30px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <h1>🌅 Morning Briefing</h1>
+    <p>Saturday, September 5, 2026 — Rabat, Morocco</p>
+  </header>
+
+  <!-- Weather -->
+  <div class="card">
+    <h2><span class="n">🌤️</span> Weather — Rabat, Morocco</h2>
+    <div class="weather-hero">
+      <div>
+        <div class="weather-temp">29°C <span style="font-size:1rem; color:var(--muted); font-weight:400;">(84°F)</span></div>
+        <div class="weather-detail">Mostly sunny and bright</div>
+      </div>
+      <div class="weather-detail" style="text-align:right;">
+        Low: 23°C (73°F)<br>
+        Wind: 9–17 mph
+      </div>
+    </div>
+    <p class="src">Source: <a href="https://www.accuweather.com/en/ma/rabat/245072/weather-forecast/245072" target="_blank" rel="noopener">AccuWeather — Rabat forecast</a></p>
+  </div>
+
+  <!-- To-dos -->
+  <div class="card">
+    <h2><span class="n">✅</span> Open To-Dos (Notion)</h2>
+    <ul class="todo-list">
+      <li><span class="todo-tag tag-perso">PERSO</span> MORNING BRIEF <span class="todo-date">created Sep 5</span></li>
+      <li><span class="todo-tag tag-perso">PERSO</span> PROJECTS CLAUDE <span class="todo-date">created Aug 12</span></li>
+      <li><span class="todo-tag tag-perso">PERSO</span> Staring the PM BUISINESS <span class="todo-date">created Aug 12</span></li>
+      <li><span class="todo-tag tag-sc">SC</span> Livrable Analyse documentaire pour facturation CFC AUDIT <span class="todo-date">created Jul 27</span></li>
+      <li><span class="todo-tag tag-perso">PERSO</span> Entrainma fitness Park? <span class="todo-date">created Jul 20</span></li>
+      <li><span class="todo-tag tag-perso">PERSO</span> Prepare garage reda <span class="todo-date">created Jul 20</span></li>
+      <li><span class="todo-tag tag-perso">PERSO</span> Planning skills 20h et enrôlement f Spanish <span class="todo-date">created Jul 10</span></li>
+      <li><span class="todo-tag tag-perso">PERSO</span> Claude plan retraite stratégie <span class="todo-date">created Jun 30</span></li>
+      <li><span class="todo-tag tag-perso">PERSO</span> Réorganiser PERSONAL dans Notion <span class="todo-date">created Jun 7</span></li>
+      <li><span class="todo-tag tag-perso">PERSO</span> Mettre tous les documents importants sur SYNOLOGY + lien Notion <span class="todo-date">created Jun 7</span></li>
+      <li><span class="todo-tag tag-perso">PERSO</span> Plan efficiently my day with AI <span class="todo-date">created Dec 10, 2025</span></li>
+    </ul>
+  </div>
+
+  <!-- World news -->
+  <div class="card">
+    <h2><span class="n">🌍</span> Top World Headlines</h2>
+    <ul>
+      <li>Blasts reported near Iran's Kharg Island oil hub amid renewed US strikes; Washington has asked allied nations to send warships to help secure the Strait of Hormuz. <span class="src">— <a href="https://www.timesofisrael.com/liveblog-september-05-2026/" target="_blank" rel="noopener">Times of Israel</a></span></li>
+      <li>A US business jet believed to be carrying special envoy Steve Witkoff and Jared Kushner arrived in Moscow for renewed diplomatic engagement with Russia. <span class="src">— <a href="https://www.brookings.edu/articles/ukraine-iran-and-the-strains-on-russian-and-american-power/" target="_blank" rel="noopener">Brookings</a></span></li>
+      <li>A shootout in downtown Kyiv between rival Ukrainian security/intelligence units has exposed a deepening feud between agencies competing for influence in the war effort. <span class="src">— <a href="https://www.brookings.edu/articles/ukraine-iran-and-the-strains-on-russian-and-american-power/" target="_blank" rel="noopener">Brookings</a></span></li>
+      <li>Norway is preparing the state funeral of King Harald V (died Aug 28, aged 89) for September 9 in Oslo; his son now reigns as King Haakon VIII. <span class="src">— <a href="https://www.cnn.com/2026/08/28/europe/king-of-norway-harald-v-oldest-monarch-dead-intl" target="_blank" rel="noopener">CNN</a>, <a href="https://www.newsinenglish.no/2026/08/31/king-haralds-funeral-date-set/" target="_blank" rel="noopener">Views and News from Norway</a></span></li>
+      <li>The US Federal Reserve's next rate decision is due September 16; markets are watching closely after the July meeting held rates at 3.5–3.75% amid still-elevated inflation. <span class="src">— <a href="https://fedratecalc.com/fed-rate-decision/" target="_blank" rel="noopener">FedRateCalc</a></span></li>
+    </ul>
+  </div>
+
+  <!-- Morocco news -->
+  <div class="card">
+    <h2><span class="n">🇲🇦</span> Top Morocco Headlines</h2>
+    <ul>
+      <li>King Mohammed VI sent a message of condolences to King Haakon VIII of Norway following the death of King Harald V. <span class="src">— <a href="https://en.wikipedia.org/wiki/2026_in_Morocco" target="_blank" rel="noopener">Wikipedia — 2026 in Morocco</a></span></li>
+      <li>Morocco's general elections are set for September 23, 2026, to elect the 395 members of the House of Representatives — just under three weeks away. <span class="src">— <a href="https://en.wikipedia.org/wiki/2026_Moroccan_general_election" target="_blank" rel="noopener">Wikipedia — 2026 Moroccan general election</a></span></li>
+      <li>Morocco's airports handled 22,282,997 passengers over the first seven months of 2026, up 8.77% year-on-year. <span class="src">— <a href="https://www.moroccoworldnews.com/headlines/" target="_blank" rel="noopener">Morocco World News</a></span></li>
+      <li>Morocco and Jordan signed an extradition convention in Rabat. <span class="src">— <a href="https://www.moroccoworldnews.com/headlines/" target="_blank" rel="noopener">Morocco World News</a></span></li>
+      <li>The Interior Ministry says it has stepped up border security near the Spanish exclaves of Ceuta and Melilla, as thousands of migrants there face dire conditions. <span class="src">— <a href="https://www.aljazeera.com/where/morocco" target="_blank" rel="noopener">Al Jazeera — Morocco</a></span></li>
+    </ul>
+  </div>
+
+  <!-- Football -->
+  <div class="card">
+    <h2><span class="n">⚽</span> Football Fixtures</h2>
+    <p style="margin:0 0 6px; font-weight:600; color:var(--accent-2);">Next FC Barcelona match</p>
+    <div class="fixture">
+      <span class="teams">Valencia CF vs FC Barcelona <span class="badge-barca">LA LIGA — MD4</span></span>
+      <span class="when">Sun, Sep 6 · 16:15<br>Mestalla</span>
+    </div>
+    <p style="margin:16px 0 6px; font-weight:600; color:var(--accent-2);">Best fixtures — next 3 (PL / La Liga)</p>
+    <div class="fixture">
+      <span class="teams">Arsenal vs Chelsea <span class="src">(PL)</span></span>
+      <span class="when">Sun, Sep 6 · 16:30</span>
+    </div>
+    <div class="fixture">
+      <span class="teams">Everton vs Manchester United <span class="src">(PL)</span></span>
+      <span class="when">Sun, Sep 6 · 14:00</span>
+    </div>
+    <div class="fixture">
+      <span class="teams">Levante vs FC Barcelona <span class="src">(La Liga MD5)</span></span>
+      <span class="when">Sun, Sep 13 · 16:15</span>
+    </div>
+    <p class="src" style="margin-top:10px;">Sources: <a href="https://www.laliga.com/en-GB/clubs/fc-barcelona/next-matches" target="_blank" rel="noopener">LaLiga</a>, <a href="https://www.premierleague.com/en/news/4675097/all-380-fixtures-for-202627-premier-league-season" target="_blank" rel="noopener">Premier League</a></p>
+  </div>
+
+  <!-- Commodities -->
+  <div class="card">
+    <h2><span class="n">🛢️</span> Oil &amp; Gold</h2>
+    <div class="stat-row">
+      <div class="stat-box">
+        <div class="label">Brent Crude</div>
+        <div class="value">$95.23/bbl</div>
+        <div class="note">+19.9% over the past month</div>
+      </div>
+      <div class="stat-box">
+        <div class="label">Gold (spot)</div>
+        <div class="value">~$4,470/oz</div>
+        <div class="note">Down slightly day-on-day</div>
+      </div>
+    </div>
+    <p><strong>Oil driver:</strong> Middle East tensions keep prices elevated — reported strikes near Iran and disruption risk around the Strait of Hormuz are limiting crude flows, with refinery damage adding further upward pressure.</p>
+    <p style="margin-bottom:0;"><strong>Gold driver:</strong> Prices are being pulled between persistent inflation (fueled by the Iran conflict) pushing rate-hike expectations up, and dovish Fed commentary (Waller, Williams) pulling them back down ahead of the September 15–16 FOMC meeting.</p>
+    <p class="src">Sources: <a href="https://tradingeconomics.com/commodity/brent-crude-oil" target="_blank" rel="noopener">Trading Economics — Brent</a>, <a href="https://www.cnbc.com/select/the-price-of-gold-today-september-4-2026-and-the-best-places-to-buy/" target="_blank" rel="noopener">CNBC — Gold</a></p>
+  </div>
+
+  <!-- CSE -->
+  <div class="card">
+    <h2><span class="n">📈</span> Casablanca Stock Exchange</h2>
+    <p>Dividend season continues on the MASI: total 2026 dividends distributed by MASI-listed companies now stand at <strong>27.6 billion MAD</strong> (+21.5% y/y), a 2.55% overall yield.</p>
+    <ul>
+      <li><strong>Maroc Telecom (Itissalat Al-Maghrib)</strong> — included in the September dividend calendar (exact detachment date not yet detailed in available sources). <span class="flag-chip hit" style="display:inline-block;">Watchlist match</span></li>
+      <li>AFMA — dividend of 62 MAD/share, detachment Sep 8, payment Sep 17.</li>
+      <li>Maroc Leasing — dividend of 14 MAD/share, detachment Sep 17, payment Sep 28.</li>
+      <li>Promopharm — detachment Sep 11, payment Sep 22.</li>
+      <li>Taqa Morocco and CTM also have September dividend dates on the calendar.</li>
+    </ul>
+    <div class="flag-note">
+      <strong>Watchlist check:</strong> no September dividend/IPO news was found for ATTIJARIWAFA BANK, TGCC, AKDITAL, SGTM, IMMORENTE INVEST, COSUMAR, SODEP-MARSA MAROC, or T2S GROUP HOLDING in today's search — only Maroc Telecom appears in the current dividend calendar.
+      <div class="flag-list">
+        <span class="flag-chip">Attijariwafa Bank</span>
+        <span class="flag-chip">TGCC</span>
+        <span class="flag-chip">Akdital</span>
+        <span class="flag-chip">SGTM</span>
+        <span class="flag-chip">Immorente Invest</span>
+        <span class="flag-chip hit">Itissalat Al-Maghrib ✓</span>
+        <span class="flag-chip">Cosumar</span>
+        <span class="flag-chip">Sodep-Marsa Maroc</span>
+        <span class="flag-chip">T2S Group Holding</span>
+      </div>
+    </div>
+    <p class="src" style="margin-top:10px;">Sources: <a href="https://www.infomediaire.net/bourse-casablanca-calendrier-dividendes-aout-septembre-2026/" target="_blank" rel="noopener">Infomédiaire</a>, <a href="https://casabourse.ma/calendrier-des-dividendes/annee/2026/" target="_blank" rel="noopener">Casabourse — Calendrier des dividendes 2026</a></p>
+  </div>
+
+  <!-- Quote -->
+  <div class="card">
+    <h2><span class="n">💭</span> Today's Reflection</h2>
+    <p class="quote-block">"Our greatest glory is not in never falling, but in rising every time we fall."</p>
+    <p class="quote-attr">— Confucius, via "Read this every day / Best Quotes" (Notion)</p>
+  </div>
+
+  <footer class="gen">
+    Generated on Saturday, September 5, 2026 at 13:25 (Africa/Casablanca, UTC+1)
+  </footer>
+
+</div>
+</body>
+</html>
