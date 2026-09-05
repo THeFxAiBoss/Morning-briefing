@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Morning Briefing — September 5, 2026</title>
+<style>
+  :root {
+    --bg: #f6f4ef;
+    --card-bg: #ffffff;
+    --text: #24262b;
+    --muted: #6b7078;
+    --accent: #b5651d;
+    --accent-2: #2f6b4f;
+    --border: #e7e3da;
+    --up: #1f8a4c;
+    --down: #c0392b;
+    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    line-height: 1.5;
+  }
+  .wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 24px 16px 60px;
+  }
+  header.masthead {
+    text-align: center;
+    margin-bottom: 28px;
+  }
+  header.masthead .date {
+    color: var(--muted);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+  header.masthead h1 {
+    margin: 0;
+    font-size: 1.7rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  header.masthead .sub {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-top: 6px;
+  }
+  section {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin-bottom: 16px;
+  }
+  section h2 {
+    margin: 0 0 12px;
+    font-size: 1.05rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  section h2 .icon { font-size: 1.15rem; }
+  ul.headlines {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  ul.headlines li {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.95rem;
+  }
+  ul.headlines li:last-child { border-bottom: none; }
+  .weather-grid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .weather-temp {
+    font-size: 2.2rem;
+    font-weight: 700;
+  }
+  .weather-detail {
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+  .fixture {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.92rem;
+    gap: 10px;
+  }
+  .fixture:last-child { border-bottom: none; }
+  .fixture .teams { font-weight: 600; }
+  .fixture .when { color: var(--muted); font-size: 0.82rem; white-space: nowrap; }
+  .badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    padding: 1px 7px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #fff;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+  .market-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .market-row:last-child { border-bottom: none; }
+  .market-name { font-weight: 600; }
+  .market-price { font-size: 1.05rem; font-weight: 700; }
+  .market-note { color: var(--muted); font-size: 0.85rem; margin-top: 4px; }
+  .up { color: var(--up); }
+  .down { color: var(--down); }
+  .cse-item {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.92rem;
+  }
+  .cse-item:last-child { border-bottom: none; }
+  .cse-item .company { font-weight: 700; color: var(--accent-2); }
+  .quote-block {
+    font-style: italic;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    border-left: 3px solid var(--accent);
+    padding-left: 14px;
+    margin: 4px 0;
+  }
+  .quote-attr {
+    display: block;
+    margin-top: 8px;
+    font-style: normal;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  .todo-group h3 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    margin: 14px 0 6px;
+  }
+  .todo-group:first-of-type h3 { margin-top: 0; }
+  ul.todos {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  ul.todos li {
+    padding: 6px 0 6px 22px;
+    position: relative;
+    font-size: 0.92rem;
+  }
+  ul.todos li::before {
+    content: "☐";
+    position: absolute;
+    left: 0;
+    color: var(--accent-2);
+  }
+  .note {
+    font-size: 0.82rem;
+    color: var(--muted);
+    background: #f1efe8;
+    border-radius: 8px;
+    padding: 8px 10px;
+    margin-top: 8px;
+  }
+  footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.78rem;
+    margin-top: 24px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #1b1c1f;
+      --card-bg: #232427;
+      --text: #eceae4;
+      --muted: #9a9da5;
+      --border: #34363a;
+      --note-bg: #2a2b2e;
+    }
+    :root:not([data-theme="light"]) .note { background: #2a2b2e; }
+  }
+  :root[data-theme="dark"] {
+    --bg: #1b1c1f;
+    --card-bg: #232427;
+    --text: #eceae4;
+    --muted: #9a9da5;
+    --border: #34363a;
+  }
+  :root[data-theme="dark"] .note { background: #2a2b2e; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="date">Friday, September 5, 2026</div>
+    <h1>☀️ Morning Briefing</h1>
+    <div class="sub">Rabat · World · Markets · Personal</div>
+  </header>
+
+  <section>
+    <h2><span class="icon">🌤️</span> Weather — Rabat, Morocco</h2>
+    <div class="weather-grid">
+      <div>
+        <div class="weather-temp">31°C</div>
+        <div class="weather-detail">Feels like a warm, humid day</div>
+      </div>
+      <div class="weather-detail" style="text-align:right;">
+        High 31°C / Low 23°C<br>
+        Cloudy · 87% humidity<br>
+        Wind 15–27 km/h
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="icon">🌍</span> World Headlines</h2>
+    <ul class="headlines">
+      <li><strong>Ukraine:</strong> Trump says envoys Witkoff and Kushner are carrying a new peace proposal to Kyiv, blaming stalled diplomacy on Zelensky–Putin animosity; reports suggest Moscow may be pressuring the envoys to cancel the visit.</li>
+      <li><strong>Middle East:</strong> Blasts reported near Iran's Kharg Island oil hub amid renewed US strikes; Israel's ambassador denies plans to force Palestinians out of Gaza after some ministers floated relocation ideas.</li>
+      <li><strong>Lebanon:</strong> IDF says overnight airstrikes in southern Lebanon targeted Hezbollah members and infrastructure, in response to a drone attack.</li>
+      <li><strong>West Bank:</strong> US ambassador presses Israel to protect Palestinians amid a sharp rise in settler attacks.</li>
+      <li><strong>Sport:</strong> US Open continues in New York — World No. 1 Aryna Sabalenka and Alexander Zverev both through to the third round.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="icon">🇲🇦</span> Morocco Headlines</h2>
+    <ul class="headlines">
+      <li><strong>Elections:</strong> Legislative elections confirmed for September 23, 2026, to renew all 395 seats in the House of Representatives — King Mohammed VI has instructed the Interior Ministry to ensure a smooth vote; new parity rules require parties to include women and youth in leadership or face financial penalties.</li>
+      <li><strong>Diplomacy:</strong> King Mohammed VI sent condolences to King Haakon VIII of Norway; Morocco and Jordan signed a new extradition convention in Rabat.</li>
+      <li><strong>Tourism:</strong> Morocco's airports handled over 22.28 million passengers in the first seven months of 2026, up 8.77% year-on-year.</li>
+      <li><strong>Sport:</strong> Morocco wrapped up the Mediterranean Games in Taranto, Italy, with 44 medals, including 16 gold.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="icon">⚽</span> Football Fixtures</h2>
+    <div class="fixture">
+      <div>
+        <div class="teams">Valencia vs FC Barcelona <span class="badge">La Liga MD4</span></div>
+      </div>
+      <div class="when">Sun Sep 6, 2:15pm UTC · Mestalla</div>
+    </div>
+    <div class="todo-group"><h3>Also worth watching</h3></div>
+    <div class="fixture">
+      <div class="teams">Everton vs Manchester United <span class="badge">PL</span></div>
+      <div class="when">Sun Sep 6, 9:00am UTC</div>
+    </div>
+    <div class="fixture">
+      <div class="teams">Arsenal vs Chelsea <span class="badge">PL</span></div>
+      <div class="when">Sun Sep 6, 11:30am UTC</div>
+    </div>
+    <div class="fixture">
+      <div class="teams">Nottingham Forest vs Tottenham Hotspur <span class="badge">PL</span></div>
+      <div class="when">Sat Sep 5, 10:00am UTC</div>
+    </div>
+    <div class="fixture">
+      <div class="teams">Barcelona vs Feyenoord <span class="badge">UCL</span></div>
+      <div class="when">Wed Sep 9, 6:45pm UTC</div>
+    </div>
+    <div class="fixture">
+      <div class="teams">Levante vs Barcelona <span class="badge">La Liga MD5</span></div>
+      <div class="when">Sun Sep 13, 4:15pm UTC</div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="icon">🛢️</span> Oil &amp; Gold</h2>
+    <div class="market-row">
+      <div>
+        <div class="market-name">Brent Crude</div>
+        <div class="market-note">Six-week highs on Middle East supply risk</div>
+      </div>
+      <div class="market-price">~$96 / bbl</div>
+    </div>
+    <div class="note">Driver: Prices holding near six-week highs as markets track fallout from strikes near Hormuz and Iran's Kharg Island oil hub, plus reported refinery damage in the Middle East and Russia limiting global spare capacity — keeping fuel prices elevated into next year.</div>
+    <div class="market-row" style="margin-top:14px;">
+      <div>
+        <div class="market-name">Gold (spot)</div>
+        <div class="market-note">Pulled back from highs on Fed rate-hike bets</div>
+      </div>
+      <div class="market-price down">~$4,420 / oz</div>
+    </div>
+    <div class="note">Driver: Gold slid ~1.3% after a stronger-than-expected August US jobs report lifted Treasury yields and the dollar, reviving bets on a Fed rate hike. Analysts see a wide September range of roughly $4,140–$5,300.</div>
+  </section>
+
+  <section>
+    <h2><span class="icon">📈</span> Casablanca Stock Exchange</h2>
+    <div class="cse-item">Dividend season is in full swing: cumulative 2026 MASI dividends have reached <strong>27.6 billion DH</strong> (+21.5%), with an average payout ratio of 53.1% and market yield of 2.55%.</div>
+    <div class="cse-item">Upcoming detachments: <strong>AFMA</strong> (62 DH/share, detach Sep 8, pay Sep 17), <strong>Promopharm</strong> (detach Sep 11, pay Sep 22), <strong>Maroc Leasing</strong> (14 DH/share, detach Sep 17, pay Sep 28), <strong>CTM</strong> (detach Sep 17, pay Sep 28).</div>
+    <div class="cse-item"><span class="company">ITISSALAT AL-MAGHRIB (Maroc Telecom):</span> Among the top 2026 dividend yields on the CSE at roughly 5.5%.</div>
+    <div class="cse-item"><span class="company">ATTIJARIWAFA BANK:</span> H1 2026 group net profit (RNPG) rose 1.1% to 5.9 billion DH; consolidated net income up 2.3% to 7.1 billion DH. Net banking income +4% to 18.4 billion DH, loans +13.8%, deposits +11.2%. Launched "Simple," billed as Morocco's first neo-bank, alongside its GOAL 2030 strategic plan. 2025 dividend yield ~4.2%.</div>
+    <div class="cse-item"><span class="company">AKDITAL:</span> Q1 2026 consolidated revenue up 24% to 1,170 MDH, driven by clinics opened in 2024–2025; network now spans 41 facilities and 4,505 beds across 24 cities, with investment up 80% (incl. Saudi/UAE expansion). FY2025 revenue +49.4% to 4,413 MDH, net income +42% to 494 MDH.</div>
+    <div class="cse-item"><span class="company">IMMORENTE INVEST:</span> Paid its second 2026 quarterly dividend of 2.5 DH/share; full-year distribution guided at roughly 15.5–16.5 (per the group's quarterly payout model).</div>
+    <div class="cse-item"><span class="company">SGTM S.A:</span> Listed via the largest-ever private IPO on the CSE (Dec 16, 2025) — 34.1x oversubscribed, raising 5.04 billion DH.</div>
+    <div class="cse-item"><span class="company">T2S GROUP HOLDING:</span> Opened the 2026 IPO season — a 1.1 billion DH operation (350 MDH primary, 750 MDH secondary), subscription July 13–17, first listing July 27 on ticker T2S; revenue CAGR of 13.3%.</div>
+    <div class="cse-item"><span class="company">TGCC S.A:</span> No major news items surfaced today beyond standard market data — construction group active in residential, hotel and commercial works.</div>
+    <div class="note">No fresh, dated news items were found today specifically for COSUMAR or SODEP-MARSA MAROC beyond routine market listings — worth checking directly if you need the latest.</div>
+  </section>
+
+  <section>
+    <h2><span class="icon">💡</span> Today's Reflection</h2>
+    <div class="quote-block">
+      "The only way to get ahead is to start now. If you start now, you will be surprised how quickly you will progress."
+      <span class="quote-attr">— George S. Clason, <em>The Richest Man in Babylon</em></span>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="icon">✅</span> Open To-Dos</h2>
+    <div class="todo-group">
+      <h3>Perso</h3>
+      <ul class="todos">
+        <li>Plan efficiently my day with AI</li>
+        <li>Mettre tous les documents importants dans un seul emplacement Synology et lien Notion</li>
+        <li>Réorganiser Personal dans Notion</li>
+        <li>Claude — plan retraite stratégie</li>
+        <li>Planning skills 20h et enrôlement Spanish</li>
+        <li>Prepare garage Reda</li>
+        <li>Entraînement fitness Park ?</li>
+        <li>Starting the PM business</li>
+        <li>Projects Claude</li>
+      </ul>
+    </div>
+    <div class="todo-group">
+      <h3>SC</h3>
+      <ul class="todos">
+        <li>Livrable — analyse documentaire pour facturation CFC Audit</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    Generated automatically · Data unavailable for a source is noted inline where it occurred.
+  </footer>
+
+</div>
+</body>
+</html>
