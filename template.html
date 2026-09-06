@@ -377,77 +377,68 @@
 </head>
 <body>
 
+<!--
+  RABAT MORNING BRIEF - LAYOUT TEMPLATE
+  Reproduce this <head> (fonts + <style>) and the section structure below
+  exactly, replacing only the placeholder text/values with the real data for
+  the day. Keep every CSS class name, the token palette, the fonts, and the
+  section order unchanged; do not restyle. If a data source fails, keep its
+  <section> and put one .note line explaining what is missing - never drop a
+  section. The sample placeholders below are illustrative only.
+-->
+
 <div class="wrap">
 
   <p class="eyebrow">Morning Brief</p>
-  <p class="dateline">Sunday · September 6, 2026</p>
+  <p class="dateline"><!-- e.g. Saturday · September 5, 2026 --></p>
 
   <div class="hero">
     <div class="hero-top">
       <p class="hero-place">Rabat, Morocco</p>
-      <span class="hero-temp">31&deg;C</span>
+      <span class="hero-temp"><!-- 31&deg;C --></span>
     </div>
-    <p class="hero-cond">Cloudy and very humid &mdash; feels like 38&deg;C in the afternoon heat.</p>
+    <p class="hero-cond"><!-- one-line conditions summary --></p>
     <div class="hero-metrics">
-      <div class="metric"><span class="metric-label">High</span><span class="metric-value">31&deg;C / 88&deg;F</span></div>
-      <div class="metric"><span class="metric-label">Low</span><span class="metric-value">20&deg;C / 68&deg;F</span></div>
-      <div class="metric"><span class="metric-label">Wind</span><span class="metric-value">WNW ~6&ndash;7 km/h</span></div>
-      <div class="metric"><span class="metric-label">Rain</span><span class="metric-value">~1%</span></div>
+      <div class="metric"><span class="metric-label">High</span><span class="metric-value"><!-- 31&deg;C / 88&deg;F --></span></div>
+      <div class="metric"><span class="metric-label">Low</span><span class="metric-value"><!-- 20&deg;C / 68&deg;F --></span></div>
+      <div class="metric"><span class="metric-label">Wind</span><span class="metric-value"><!-- ~15&ndash;20 km/h --></span></div>
+      <div class="metric"><span class="metric-label">Rain</span><span class="metric-value"><!-- Near 0% --></span></div>
     </div>
   </div>
 
   <section>
     <h2>Today's calendar</h2>
-    <p class="note">No calendar events today.</p>
+    <!-- Repeat .fixture rows: .fixture-time = start-end, .fixture-match = event title, .fixture-comp = location / attendees. If no events: <p class="note">No calendar events today.</p> -->
+    <div class="fixture">
+      <span class="fixture-time"><!-- 09:00<br>10:30 --></span>
+      <div class="fixture-body">
+        <div class="fixture-match"><!-- Event title --></div>
+        <div class="fixture-comp"><!-- Location / notes --></div>
+      </div>
+    </div>
   </section>
 
   <section>
     <h2>Open to-dos</h2>
     <p class="todo-group-label">Perso</p>
-    <div class="todo-item"><span class="todo-priority">P2</span><span>Plan efficiently my day with AI</span></div>
-    <div class="todo-item"><span class="todo-priority low">&mdash;</span><span>Mettre tous les documents importants dans un seul emplacement SYNOLOGY et lien notion</span></div>
-    <div class="todo-item"><span class="todo-priority low">&mdash;</span><span>Réorganiser PERSONAL dans notion</span></div>
+    <div class="todo-item"><span class="todo-priority"><!-- P0 --></span><span><!-- task --></span></div>
     <p class="todo-group-label">SC</p>
-    <div class="todo-item"><span class="todo-priority">P2</span><span>Livrable Analyse documentaire pour facturation CFC AUDIT</span></div>
+    <div class="todo-item"><span class="todo-priority"><!-- P0 --></span><span><!-- task --></span></div>
   </section>
 
   <section>
     <h2>World headlines</h2>
     <div class="item">
-      <p class="item-title"><a href="https://www.npr.org/2026/09/06/nx-s1-5959657/us-envoys-witkoff-kushner-talks-in-kyiv-putin-moscow">US envoys Witkoff and Kushner press Ukraine peace push, from Moscow to Kyiv</a></p>
-      <p class="item-meta">After a three-hour meeting with Putin in Moscow yielded no breakthrough, Trump's envoys moved on to Kyiv to meet Zelensky as both sides briefly pause strikes on each other's capitals. &mdash; NPR · <a href="https://www.npr.org/2026/09/06/nx-s1-5959657/us-envoys-witkoff-kushner-talks-in-kyiv-putin-moscow">Full story</a></p>
-    </div>
-    <div class="item">
-      <p class="item-title"><a href="https://www.npr.org/2026/09/05/g-s1-142148/philippines-vice-president-posts-bail">Philippines VP Sara Duterte posts bail after arrest warrant over Marcos threats</a></p>
-      <p class="item-meta">Duterte posted 360,000 pesos bail on three counts of grave threats tied to a 2024 remark about having Marcos and two others assassinated. &mdash; NPR · <a href="https://www.npr.org/2026/09/05/g-s1-142148/philippines-vice-president-posts-bail">Full story</a></p>
-    </div>
-    <div class="item">
-      <p class="item-title"><a href="https://www.aljazeera.com/news/2026/9/4/small-potatoes-us-president-trump-downplays-war-on-iran">Trump downplays six-month Iran conflict as &ldquo;small potatoes&rdquo;</a></p>
-      <p class="item-meta">The remark comes despite 18 US service-member deaths and a fresh round of US strikes on Iranian oil tankers in the Gulf. &mdash; Al Jazeera · <a href="https://www.aljazeera.com/news/2026/9/4/small-potatoes-us-president-trump-downplays-war-on-iran">Full story</a></p>
-    </div>
-    <div class="item">
-      <p class="item-title"><a href="https://www.cbsnews.com/live-updates/iran-war-us-trump-diesel-gas-prices-labor-day/">Iran threatens &ldquo;more painful&rdquo; response after US disables oil tankers</a></p>
-      <p class="item-meta">Tehran's parliament speaker vowed retaliation after the US struck three Iranian oil tankers following Revolutionary Guard missile fire at a US carrier group. &mdash; CBS News · <a href="https://www.cbsnews.com/live-updates/iran-war-us-trump-diesel-gas-prices-labor-day/">Full story</a></p>
+      <p class="item-title"><a href="#"><!-- headline --></a></p>
+      <p class="item-meta"><!-- 1-2 sentence summary --> &mdash; <!-- Source --> · <a href="#">Full story</a></p>
     </div>
   </section>
 
   <section>
     <h2>Morocco headlines</h2>
     <div class="item">
-      <p class="item-title"><a href="https://www.aljazeera.com/news/2026/9/3/moroccos-ruling-allies-turn-on-each-other-before-election-campaign-begins">Morocco's ruling coalition allies turn on each other before campaign begins</a></p>
-      <p class="item-meta">Accusations, defections and a leaked recording expose tension atop the governing coalition ahead of the official campaign opening September 10. &mdash; Al Jazeera · <a href="https://www.aljazeera.com/news/2026/9/3/moroccos-ruling-allies-turn-on-each-other-before-election-campaign-begins">Full story</a></p>
-    </div>
-    <div class="item">
-      <p class="item-title"><a href="https://www.moroccoworldnews.com/2026/08/336432/moroccos-2026-elections-what-voters-need-to-know-before-september-23/">What voters need to know before Morocco's September 23 elections</a></p>
-      <p class="item-meta">Roughly 16.5 million voters are registered to choose the 395-seat House of Representatives, with campaigning running September 10&ndash;22. &mdash; Morocco World News · <a href="https://www.moroccoworldnews.com/2026/08/336432/moroccos-2026-elections-what-voters-need-to-know-before-september-23/">Full story</a></p>
-    </div>
-    <div class="item">
-      <p class="item-title"><a href="https://www.moroccoworldnews.com/2026/09/337253/morocco-welcomes-over-14-million-tourists-in-eight-months-august-hits-record/">Morocco welcomes over 14 million tourists in eight months, August hits record</a></p>
-      <p class="item-meta">Arrivals are up 4.5% year-on-year, with August topping 2 million arrivals in a single month for the first time. &mdash; Morocco World News · <a href="https://www.moroccoworldnews.com/2026/09/337253/morocco-welcomes-over-14-million-tourists-in-eight-months-august-hits-record/">Full story</a></p>
-    </div>
-    <div class="item">
-      <p class="item-title"><a href="https://northafricapost.com/100049-moroccos-new-strategy-to-combat-drought-the-water-motorway.html">Morocco unveils &ldquo;water motorway&rdquo; strategy to combat drought</a></p>
-      <p class="item-meta">A nearly 300km link between the Sebou and Oum Er-Rbia basins aims to move up to 800 million m&sup3; of water a year to Casablanca-area cities. &mdash; The North Africa Post · <a href="https://northafricapost.com/100049-moroccos-new-strategy-to-combat-drought-the-water-motorway.html">Full story</a></p>
+      <p class="item-title"><a href="#"><!-- headline --></a></p>
+      <p class="item-meta"><!-- summary --> &mdash; <!-- Source --> · <a href="#">Full story</a></p>
     </div>
   </section>
 
@@ -455,32 +446,18 @@
     <h2>Football fixtures</h2>
     <h3 class="sub">FC Barcelona &middot; La Liga</h3>
     <div class="fixture">
-      <span class="fixture-time">Sun Sep 6<br>15:15</span>
+      <span class="fixture-time"><!-- Sun Sep 6<br>16:15 --></span>
       <div class="fixture-body">
-        <div class="fixture-match">Valencia CF vs FC Barcelona</div>
-        <div class="fixture-comp">Mestalla &middot; Matchday 4</div>
+        <div class="fixture-match"><!-- Home vs Away --></div>
+        <div class="fixture-comp"><!-- Venue &middot; Matchday --></div>
       </div>
     </div>
     <h3 class="sub">Premier League &amp; La Liga &middot; best of the next 3</h3>
     <div class="fixture">
-      <span class="fixture-time">Sat Sep 12<br>17:30</span>
+      <span class="fixture-time"><!-- day + Morocco time --></span>
       <div class="fixture-body">
-        <div class="fixture-match">Tottenham Hotspur vs Everton</div>
-        <div class="fixture-comp">Tottenham Hotspur Stadium &middot; Premier League</div>
-      </div>
-    </div>
-    <div class="fixture">
-      <span class="fixture-time">Sat Sep 12<br>20:00</span>
-      <div class="fixture-body">
-        <div class="fixture-match">Sunderland vs Arsenal</div>
-        <div class="fixture-comp">Stadium of Light &middot; Premier League</div>
-      </div>
-    </div>
-    <div class="fixture">
-      <span class="fixture-time">Sun Sep 13<br>16:30</span>
-      <div class="fixture-body">
-        <div class="fixture-match">Manchester United vs Manchester City</div>
-        <div class="fixture-comp">Old Trafford &middot; Premier League</div>
+        <div class="fixture-match"><!-- Home vs Away --></div>
+        <div class="fixture-comp"><!-- Venue &middot; Competition --></div>
       </div>
     </div>
   </section>
@@ -491,25 +468,25 @@
       <div class="market-card">
         <div class="market-top">
           <span class="market-name">Brent crude</span>
-          <span class="market-price">$95.90</span>
+          <span class="market-price"><!-- $95.2 --></span>
         </div>
-        <span class="market-delta up">&uarr; ~0.6% on the day</span>
-        <p class="market-note">Repeated US strikes on Iranian oil tankers and Tehran's threat of a &ldquo;more painful&rdquo; response are lifting prices, though gains are capped by IEA warnings of a growing 2026 supply surplus.</p>
+        <span class="market-delta down"><!-- &darr; ~0.3% on the day --></span>
+        <p class="market-note"><!-- one or two phrases on what is driving the price --></p>
       </div>
       <div class="market-card">
         <div class="market-top">
           <span class="market-name">Gold</span>
-          <span class="market-price">$4,494</span>
+          <span class="market-price"><!-- $4,521 --></span>
         </div>
-        <span class="market-delta flat">Markets shut for the weekend &mdash; Friday's close</span>
-        <p class="market-note">Supported by fading bets on a September Fed rate hike after dovish comments from Governor Waller, plus safe-haven demand tied to the Iran conflict.</p>
+        <span class="market-delta up"><!-- &uarr; ~0.4% on the day --></span>
+        <p class="market-note"><!-- one or two phrases on what is driving the price --></p>
       </div>
     </div>
   </section>
 
   <section>
     <h2>Casablanca Stock Exchange</h2>
-    <p class="item-meta" style="margin-bottom:14px;">MASI at 18,792.25 pts (+0.44%, Friday's close) &mdash; insurance stocks led gains while the market stays calm ahead of the September 23 election campaign.</p>
+    <p class="item-meta" style="margin-bottom:14px;"><!-- MASI level + move + one-line market colour --></p>
     <div class="flag-row">
       <span class="flag-chip">Attijariwafa</span>
       <span class="flag-chip">TGCC</span>
@@ -524,33 +501,26 @@
     <div class="watch-item">
       <span class="dot"></span>
       <div class="watch-body">
-        <p class="item-title">Akdital paid its FY2025 dividend on September 2</p>
-        <p class="item-meta">14 DH/share, up 40% from the 10 DH distributed the prior year.</p>
-      </div>
-    </div>
-    <div class="watch-item">
-      <span class="dot"></span>
-      <div class="watch-body">
-        <p class="item-title">TGCC's dividend cycle wrapped up in August</p>
-        <p class="item-meta">15 DH/share detached August 7 and paid August 19; no new distribution news this week.</p>
+        <p class="item-title"><!-- headline --></p>
+        <p class="item-meta"><!-- detail: ex-date, payment date, yield, IPO price, etc. --></p>
       </div>
     </div>
     <h3 class="sub">Also on the radar</h3>
     <div class="item">
-      <p class="item-title">Attijariwafa Bank, Itissalat Al-Maghrib, Marsa Maroc, Cosumar, SGTM, Immorente Invest, T2S Group &middot; nothing new today</p>
-      <p class="item-meta">Attijariwafa, Maroc Telecom and Marsa Maroc remain among the most actively traded names; no fresh dividend or IPO news for the rest of the watchlist this session.</p>
+      <p class="item-title"><!-- watched name(s) &middot; nothing new today --></p>
+      <p class="item-meta"><!-- short note --></p>
     </div>
   </section>
 
   <section>
     <h2>Today's reflection</h2>
     <div class="quote-card">
-      <blockquote>&ldquo;He has achieved success who has lived well, laughed often and loved much.&rdquo;</blockquote>
-      <p class="quote-attr">&mdash; Bessie A. Stanley</p>
+      <blockquote><!-- quote from Notion "Read this every day" --></blockquote>
+      <p class="quote-attr">&mdash; <!-- attribution --></p>
     </div>
   </section>
 
-  <p class="footer">Generated Sun 6 Sep 2026, 12:50 (Africa/Casablanca)</p>
+  <p class="footer">Generated <!-- Sat 6 Sep 2026, 08:02 (Africa/Casablanca) --></p>
 
 </div>
 
