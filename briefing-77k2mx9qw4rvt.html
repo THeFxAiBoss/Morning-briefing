@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rabat Morning Brief</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,500;0,600;0,700;1,500&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --bg:#F5F7F8;
+    --surface:#FFFFFF;
+    --surface-2:#EEF2F2;
+    --ink:#1B2A33;
+    --ink-soft:#57666D;
+    --ink-faint:#8B9AA0;
+    --hairline:#DCE2E2;
+    --accent:#C98A1F;
+    --accent-ink:#7A5310;
+    --accent-bg:#FBF0DC;
+    --teal:#146B69;
+    --teal-bg:#E4F0EF;
+    --positive:#1F7A5C;
+    --positive-bg:#E4F3EC;
+    --negative:#B3452F;
+    --negative-bg:#FBEAE5;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#10181A;
+      --surface:#182325;
+      --surface-2:#1E2A2C;
+      --ink:#E7EEEF;
+      --ink-soft:#A9B8BC;
+      --ink-faint:#6C7E84;
+      --hairline:#28373A;
+      --accent:#E0AB4C;
+      --accent-ink:#F3CE8A;
+      --accent-bg:#332612;
+      --teal:#5CBAB2;
+      --teal-bg:#183130;
+      --positive:#5CBD8F;
+      --positive-bg:#152D22;
+      --negative:#E28667;
+      --negative-bg:#33201A;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#10181A;
+    --surface:#182325;
+    --surface-2:#1E2A2C;
+    --ink:#E7EEEF;
+    --ink-soft:#A9B8BC;
+    --ink-faint:#6C7E84;
+    --hairline:#28373A;
+    --accent:#E0AB4C;
+    --accent-ink:#F3CE8A;
+    --accent-bg:#332612;
+    --teal:#5CBAB2;
+    --teal-bg:#183130;
+    --positive:#5CBD8F;
+    --positive-bg:#152D22;
+    --negative:#E28667;
+    --negative-bg:#33201A;
+  }
+
+  *{box-sizing:border-box;}
+  html{background:var(--bg);}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Work Sans", -apple-system, "Segoe UI", sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{
+    max-width:640px;
+    margin:0 auto;
+    padding:28px 20px 56px;
+  }
+
+  .eyebrow{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:11.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    margin:0 0 6px;
+  }
+  .dateline{
+    font-size:13.5px;
+    color:var(--ink-soft);
+    margin:0 0 18px;
+  }
+  .hero{
+    background:var(--surface);
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:22px 22px 20px;
+    margin-bottom:30px;
+  }
+  .hero-top{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .hero-place{
+    font-family:"Newsreader", Georgia, serif;
+    font-weight:600;
+    font-size:22px;
+    margin:0;
+  }
+  .hero-temp{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:34px;
+    font-weight:600;
+    font-variant-numeric:tabular-nums;
+    color:var(--ink);
+  }
+  .hero-cond{
+    color:var(--ink-soft);
+    font-size:14.5px;
+    margin:2px 0 14px;
+  }
+  .hero-metrics{
+    display:flex;
+    gap:22px;
+    flex-wrap:wrap;
+    border-top:1px solid var(--hairline);
+    padding-top:14px;
+  }
+  .metric{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+  }
+  .metric-label{
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+  }
+  .metric-value{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:14.5px;
+    font-variant-numeric:tabular-nums;
+  }
+
+  section{
+    margin-bottom:32px;
+  }
+  h2{
+    font-family:"Newsreader", Georgia, serif;
+    font-weight:600;
+    font-size:19px;
+    margin:0 0 14px;
+    text-wrap:balance;
+  }
+  h3.sub{
+    font-family:"Work Sans", sans-serif;
+    font-weight:600;
+    font-size:12.5px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--teal);
+    margin:20px 0 10px;
+  }
+  h3.sub:first-of-type{ margin-top:4px; }
+
+  .item{
+    padding:13px 0;
+    border-bottom:1px solid var(--hairline);
+  }
+  .item:last-child{ border-bottom:none; }
+  .item-title{
+    font-weight:600;
+    font-size:15.5px;
+    line-height:1.35;
+    margin:0 0 3px;
+  }
+  .item-title a{ color:inherit; text-decoration:none; border-bottom:1px solid var(--hairline); }
+  .item-meta{
+    color:var(--ink-soft);
+    font-size:13.5px;
+    line-height:1.45;
+    margin:0;
+  }
+  .item-meta a{ color:var(--teal); text-decoration:none; }
+
+  .fixture{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    padding:11px 0;
+    border-bottom:1px solid var(--hairline);
+  }
+  .fixture:last-child{ border-bottom:none; }
+  .fixture-time{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:12.5px;
+    color:var(--ink-faint);
+    white-space:nowrap;
+    padding-top:2px;
+    min-width:86px;
+  }
+  .fixture-body{ flex:1; min-width:0; }
+  .fixture-match{
+    font-weight:600;
+    font-size:14.5px;
+  }
+  .fixture-comp{
+    font-size:12.5px;
+    color:var(--ink-soft);
+    margin-top:2px;
+  }
+
+  .market-grid{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .market-card{
+    background:var(--surface);
+    border:1px solid var(--hairline);
+    border-radius:14px;
+    padding:16px 18px;
+  }
+  .market-top{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:10px;
+  }
+  .market-name{
+    font-family:"Newsreader", Georgia, serif;
+    font-weight:600;
+    font-size:16px;
+  }
+  .market-price{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:22px;
+    font-weight:600;
+    font-variant-numeric:tabular-nums;
+  }
+  .market-delta{
+    display:inline-flex;
+    align-items:center;
+    gap:4px;
+    font-family:"IBM Plex Mono", monospace;
+    font-size:12.5px;
+    font-weight:600;
+    padding:3px 8px;
+    border-radius:20px;
+    margin-top:6px;
+  }
+  .up{ color:var(--positive); background:var(--positive-bg); }
+  .down{ color:var(--negative); background:var(--negative-bg); }
+  .flat{ color:var(--ink-soft); background:var(--surface-2); }
+  .market-note{
+    color:var(--ink-soft);
+    font-size:13.5px;
+    line-height:1.5;
+    margin:10px 0 0;
+  }
+
+  .flag-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin:2px 0 18px;
+  }
+  .flag-chip{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:11.5px;
+    color:var(--teal);
+    background:var(--teal-bg);
+    border-radius:20px;
+    padding:4px 10px;
+    letter-spacing:0.01em;
+  }
+  .watch-item{
+    padding:12px 0;
+    border-bottom:1px solid var(--hairline);
+    display:flex;
+    gap:10px;
+  }
+  .watch-item:last-child{ border-bottom:none; }
+  .dot{
+    width:7px; height:7px; border-radius:50%;
+    background:var(--teal);
+    margin-top:7px;
+    flex-shrink:0;
+  }
+  .watch-body .item-title{ margin-bottom:2px; }
+
+  .quote-card{
+    border-left:3px solid var(--accent);
+    padding:2px 0 2px 18px;
+  }
+  blockquote{
+    margin:0 0 10px;
+    font-family:"Newsreader", Georgia, serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:19px;
+    line-height:1.5;
+    color:var(--ink);
+    text-wrap:balance;
+  }
+  .quote-attr{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:12.5px;
+    color:var(--ink-faint);
+    letter-spacing:0.02em;
+  }
+
+  .todo-group-label{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:11px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    margin:18px 0 6px;
+  }
+  .todo-group-label:first-of-type{ margin-top:2px; }
+  .todo-item{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    padding:9px 0;
+    border-bottom:1px solid var(--hairline);
+    font-size:14.5px;
+  }
+  .todo-item:last-child{ border-bottom:none; }
+  .todo-priority{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:11.5px;
+    color:var(--accent-ink);
+    background:var(--accent-bg);
+    border-radius:5px;
+    padding:1px 6px;
+    flex-shrink:0;
+  }
+  .todo-priority.low{
+    color:var(--ink-faint);
+    background:var(--surface-2);
+  }
+  .todo-priority.overdue{
+    color:var(--negative);
+    background:var(--negative-bg);
+  }
+
+  .note{
+    color:var(--ink-faint);
+    font-size:12.5px;
+    font-style:italic;
+    margin:6px 0 0;
+  }
+
+  .footer{
+    margin-top:40px;
+    padding-top:16px;
+    border-top:1px solid var(--hairline);
+    font-family:"IBM Plex Mono", monospace;
+    font-size:11.5px;
+    color:var(--ink-faint);
+    letter-spacing:0.02em;
+  }
+
+  @media (max-width:420px){
+    .hero-temp{ font-size:28px; }
+    .market-price{ font-size:19px; }
+    blockquote{ font-size:17px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <p class="eyebrow">Morning Brief</p>
+  <p class="dateline">Wednesday · September 23, 2026</p>
+
+  <div class="hero">
+    <div class="hero-top">
+      <p class="hero-place">Rabat, Morocco</p>
+      <span class="hero-temp">21°C</span>
+    </div>
+    <p class="hero-cond">Mostly clear, humid overnight air clearing into a sunny, warm day</p>
+    <div class="hero-metrics">
+      <div class="metric"><span class="metric-label">High</span><span class="metric-value">30°C / 86°F</span></div>
+      <div class="metric"><span class="metric-label">Low</span><span class="metric-value">14°C / 57°F</span></div>
+      <div class="metric"><span class="metric-label">Wind</span><span class="metric-value">N ~9 km/h, gusts 28 km/h</span></div>
+      <div class="metric"><span class="metric-label">Rain</span><span class="metric-value">0%</span></div>
+    </div>
+  </div>
+
+  <section>
+    <h2>Today's calendar</h2>
+    <p class="note">No events found on the primary Google Calendar for today or tomorrow.</p>
+  </section>
+
+  <section>
+    <h2>Open to-dos</h2>
+    <p class="todo-group-label">Perso</p>
+    <div class="todo-item"><span class="todo-priority">P2</span><span>Plan efficiently my day with AI</span></div>
+    <div class="todo-item"><span class="todo-priority low">—</span><span>Call &amp; organize meeting with the villa owner — discuss project, price, timeline for potential UPBUILD Construction gig before Oct 31</span></div>
+    <div class="todo-item"><span class="todo-priority low">—</span><span>Coffee with Othmane — discuss running for a BAM project together</span></div>
+    <p class="todo-group-label">SC</p>
+    <div class="todo-item"><span class="todo-priority">P1</span><span>Préparation livrable PH3-4-5 (in progress) — préparer BRIDGE et CUBE</span></div>
+    <div class="todo-item"><span class="todo-priority">P2</span><span>Relire dossier hôtel</span></div>
+    <div class="todo-item"><span class="todo-priority">P3</span><span>Préparer idée IA</span></div>
+  </section>
+
+  <section>
+    <h2>World headlines</h2>
+    <div class="item">
+      <p class="item-title"><a href="https://www.cnn.com/2026/09/22/world/live-news/un-general-assembly-trump">World leaders open the UN's 81st General Assembly in New York</a></p>
+      <p class="item-meta">Nearly 130 heads of state and government took the podium as Guterres and Assembly President Khalilur Rahman opened high-level week; Lula spoke first by tradition, followed by Trump, with the U.S.-Iran war, Ukraine and Gaza atop the agenda. &mdash; CNN · <a href="https://www.cnn.com/2026/09/22/world/live-news/un-general-assembly-trump">Full story</a></p>
+    </div>
+    <div class="item">
+      <p class="item-title"><a href="https://www.bloomberg.com/news/articles/2026-09-20/moscow-refinery-hit-as-russia-reports-largest-2026-drone-attack">Ukrainian drones knock out Moscow's largest oil refinery</a></p>
+      <p class="item-meta">Russia says it downed 1,110 drones in its largest overnight barrage of the year; the Moscow refinery, source of ~40% of the capital's fuel, halted crude processing after fires hit its distillation units. &mdash; Bloomberg · <a href="https://www.bloomberg.com/news/articles/2026-09-20/moscow-refinery-hit-as-russia-reports-largest-2026-drone-attack">Full story</a></p>
+    </div>
+    <div class="item">
+      <p class="item-title"><a href="https://www.cnbc.com/2026/09/23/unga-trump-iran-china-greenland-ukraine-russia-.html">Xi skips UN assembly, heads to Washington for summit with Trump</a></p>
+      <p class="item-meta">China's leader stayed away from UNGA high-level week but travels to a high-stakes bilateral summit with Trump in Washington, while India and Russia's leaders also sat out New York. &mdash; CNBC · <a href="https://www.cnbc.com/2026/09/23/unga-trump-iran-china-greenland-ukraine-russia-.html">Full story</a></p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Morocco headlines</h2>
+    <div class="item">
+      <p class="item-title"><a href="https://en.hespress.com/145780-international-missions-to-monitor-moroccos-2026-legislative-elections.html">International missions monitor Morocco's legislative elections</a></p>
+      <p class="item-meta">Some 3,000 observers from 26 national and 30 international bodies are deployed as roughly 15.8 million registered voters choose the 395-seat House of Representatives, with Akhannouch's government facing voters after five years. &mdash; Hespress · <a href="https://en.hespress.com/145780-international-missions-to-monitor-moroccos-2026-legislative-elections.html">Full story</a></p>
+    </div>
+    <div class="item">
+      <p class="item-title"><a href="https://fr.hespress.com/489366-le-scrutin-du-23-septembre-en-chiffres.html">Le scrutin du 23 septembre en chiffres</a></p>
+      <p class="item-meta">28 partis et 1 850 listes de candidats se disputent les 395 sièges de la Chambre des représentants; les résultats du ministère de l'Intérieur sont attendus dès demain. &mdash; Hespress · <a href="https://fr.hespress.com/489366-le-scrutin-du-23-septembre-en-chiffres.html">Full story</a></p>
+    </div>
+    <div class="item">
+      <p class="item-title"><a href="https://en.hespress.com/145831-what-to-know-about-the-sept-23-push-to-cross-into-ceuta.html">What to know about the Sept. 23 push to cross into Ceuta</a></p>
+      <p class="item-meta">Hespress runs through what's driving renewed attempts to cross into the Spanish enclave, timed around election day. &mdash; Hespress · <a href="https://en.hespress.com/145831-what-to-know-about-the-sept-23-push-to-cross-into-ceuta.html">Full story</a></p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Football fixtures</h2>
+    <h3 class="sub">FC Barcelona &middot; La Liga</h3>
+    <div class="fixture">
+      <span class="fixture-time">Sat Oct 10<br>17:30</span>
+      <div class="fixture-body">
+        <div class="fixture-match">Barcelona vs Getafe</div>
+        <div class="fixture-comp">Spotify Camp Nou &middot; La Liga Matchday 8</div>
+      </div>
+    </div>
+    <h3 class="sub">Premier League &amp; La Liga &middot; best of the next 3</h3>
+    <div class="fixture">
+      <span class="fixture-time">Fri Sep 25<br>20:00</span>
+      <div class="fixture-body">
+        <div class="fixture-match">Morocco vs Gabon</div>
+        <div class="fixture-comp">Prince Moulay Abdellah Stadium, Rabat &middot; 2027 AFCON Qualifier</div>
+      </div>
+    </div>
+    <div class="fixture">
+      <span class="fixture-time">Sat Sep 26<br>19:45</span>
+      <div class="fixture-body">
+        <div class="fixture-match">England vs Spain</div>
+        <div class="fixture-comp">Wembley Stadium, London &middot; UEFA Nations League</div>
+      </div>
+    </div>
+    <div class="fixture">
+      <span class="fixture-time">Tue Sep 29<br>14:00</span>
+      <div class="fixture-body">
+        <div class="fixture-match">Lesotho vs Morocco</div>
+        <div class="fixture-comp">Toyota Stadium, Bloemfontein (RSA) &middot; 2027 AFCON Qualifier</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Oil &amp; gold</h2>
+    <div class="market-grid">
+      <div class="market-card">
+        <div class="market-top">
+          <span class="market-name">Brent crude</span>
+          <span class="market-price">$98.5</span>
+        </div>
+        <span class="market-delta down">&darr; ~1.9% on the day</span>
+        <p class="market-note">Sliding as credible diplomatic signals of a US–Iran de-escalation unwind the war-risk premium built into the barrel over the past weeks.</p>
+      </div>
+      <div class="market-card">
+        <div class="market-top">
+          <span class="market-name">Gold</span>
+          <span class="market-price">$4,339</span>
+        </div>
+        <span class="market-delta down">&darr; ~0.6% on the day</span>
+        <p class="market-note">Easing off record highs on profit-taking and a firmer dollar, as the same Iran de-escalation headlines that pressure oil are softening safe-haven demand.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Casablanca Stock Exchange</h2>
+    <p class="item-meta" style="margin-bottom:14px;">MASI at 18,076.72 pts (Tue's close), +0.48% on the day &mdash; index consolidating near recent highs, led by a 3.71% jump in Mining shares, with volumes light ahead of today's legislative elections.</p>
+    <div class="flag-row">
+      <span class="flag-chip">Attijariwafa</span>
+      <span class="flag-chip">TGCC</span>
+      <span class="flag-chip">Akdital</span>
+      <span class="flag-chip">SGTM</span>
+      <span class="flag-chip">Immorente Invest</span>
+      <span class="flag-chip">Itissalat Al-Maghrib</span>
+      <span class="flag-chip">Cosumar</span>
+      <span class="flag-chip">Marsa Maroc</span>
+      <span class="flag-chip">T2S Group</span>
+    </div>
+    <div class="watch-item">
+      <span class="dot"></span>
+      <div class="watch-body">
+        <p class="item-title">Akdital dividend paid — 14 MAD/share</p>
+        <p class="item-meta">FY2025 dividend, up 40% year-on-year from 10 MAD, paid September 2.</p>
+      </div>
+    </div>
+    <div class="watch-item">
+      <span class="dot"></span>
+      <div class="watch-body">
+        <p class="item-title">TGCC dividend paid — 15 MAD/share</p>
+        <p class="item-meta">Detached August 7, paid August 19.</p>
+      </div>
+    </div>
+    <h3 class="sub">Also on the radar</h3>
+    <div class="item">
+      <p class="item-title">Attijariwafa, Itissalat Al-Maghrib, Cosumar, Marsa Maroc, T2S Group &middot; no new dividend or IPO news today</p>
+      <p class="item-meta">Recent sessions show Attijariwafa, Itissalat Al-Maghrib and Cosumar softer (roughly -1% to -3%) while Marsa Maroc and T2S Group Holding ticked up (+0.9%, +0.85%); no fresh SGTM or Immorente Invest items surfaced.</p>
+      <p class="note">casablanca-bourse.com's Avis, Instructions and Émetteurs publication pages could not be reached from this session (network access blocked), so this section relies on secondary market-data sources rather than the exchange's own notices.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Today's reflection</h2>
+    <div class="quote-card">
+      <blockquote>"Most of the important things in the world have been accomplished by people who have kept on trying when there seemed to be no hope at all."</blockquote>
+      <p class="quote-attr">&mdash; Dale Carnegie</p>
+    </div>
+  </section>
+
+  <p class="footer">Generated Wed 23 Sep 2026, 07:17 (Africa/Casablanca)</p>
+
+</div>
+
+</body>
+</html>
